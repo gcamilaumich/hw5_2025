@@ -1,0 +1,186 @@
+
+
+/* This is the animation code, it animates the logo, making it expand in width when a user first lands on the page or refreshes the page. */
+@keyframes logo {
+    from {width: 25px;}
+    to {width: 475px;}
+    from {opacity:0;}
+    to {opacity:1;}
+  }
+
+  /* The element to apply the animation to. In this case I used # since the logo image has "id =logo". It then attaches the animation code above, to this element. */
+  #logo {
+    animation-duration: 5s;
+}
+
+/* 2. This code targets the body element. I have added the Poppins font (from Google fonts) and serif as the backup code in case Poppins does not work. I have added Poppins in quotations since its an external font. These quotations are therefore necessary.
+I have also added "concrete_seamless.png" and my background image with a backup color of #f1f1f1, if the image fails to load to users.  */
+  body {
+    font-family:"Poppins", serif;
+    background-image: url("../images/concrete_seamless.png");
+    background-color: #f1f1f1;
+  }
+
+  /* 3. The following is the CSS for the webpage's header. It edits all instances of the header tag in the html, so that flex is applied to them This makes the header responsive. The align-items and flex direction align the elements inside of the header tag so that they are centered on the page and in a  column style (right under each other instead of beside each other)*/
+header {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+/* 4. This edits the CSS for all the navigation links. Since the navigation links have "class ="nav_links", I use this as the selector. This code applies flex to them and allows you to edit their position according to the desired look. Because the code above (which targets the header tag they are nexted under) already centers them, I only need to edit their direction. The column flex-direction oragnzies them in columns so that they all vertically fall right under each other.  */
+
+.nav_links {
+    display:flex;
+    flex-direction: column;
+}
+
+/* 5. This code targets the navigation links specifically, editing their color and their decoration. The first tag changes how they look when they have not been clicked yet. The second tag edits hot they look when the links have been visited. In this case, I have edited the CSS code so that the links remain unchanged in apperance even after they have been visited.  */
+a:link {
+    color: blue;
+    text-decoration: underline;
+}
+a:visited {
+    color: blue;
+    text-decoration: underline;
+}
+
+/* 6. The selector targets only the header (the direct child) of the .card class. This is accomplished by using the ">" symbol between both selectors. This ensures that the only elements that are targeted in the .card class is the header and not the rest of the elements (like the lists). This way I can apply the requirred styling only to the desired areas.
+
+Because this only rounds the header section of the element, the .card class background is not styled, and therefore, peaks out from under it. The second code below edits this background so that it curves the same amount as the headers.
+  */
+
+  .card > header {
+    background: #288088;
+    border: solid 2px #45ADAD;
+    padding: 20px 0;
+    border-top-left-radius:  50px;
+    border-top-right-radius: 50px;
+  }
+
+  .card {
+    border-top-left-radius: 50px;
+    border-top-right-radius: 50px;
+  }
+
+  /* 7.  Next, I styled the code for the .card classes. The first code uses the flex-property "flex-basis" to set the inital size of the containers to 450px - they can still shrink and grow to adjust to screens, but all the containers will have identical sizes (width wise, at least).
+
+  8. The second code styles the .pricing class by combining two properties: flex-direction and flex-wrap. "row" places the items in a horizontal line and "wrap" allows them to move to the next line if the screen is smaller, rather than shrinking the items. Justify-content centers the content.  */
+.card {
+    Flex-basis: 450px;
+    }
+
+.pricing{
+    Display:flex;
+    Flex-flow: row wrap;
+    Justify-content: center;
+    }
+
+/* 9. The first code  targets each individual image in the gallery class, but applies the same style specification for all. It gives the images a 10px solid border with the color #50C7C7, 10px margin on all four sides, and a width of 300px.  */
+/* 10. The second code targtes all of the .gallery class, this includes all of the images as a whole. The css applies flex to this class. Flex-wrap ensures that the items move to the next line if the screen is smaller. Justify-content centers the items. */
+
+.gallery img{
+        border: 10px solid #50c7c7;
+        margin: 10px;
+        width: 300px;
+    }
+
+.gallery {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+/* 11. This code applies a media query to the website, meaning that it edits how the page will look based on the size of this screen. In this instance, if a screen is bigger than 900px, the following changes will be made. In the code specified below, if the screen size exceeds 900px, all of the header tags and nav_links will change thorugh the use of flex-properties. The header and nav_links will be displayed in a row, rather than columns. Meaning they will be aligned horizontally rather than vertically. Additionally, they will be space between them so that the logo in the header will be aligned as far left as possible, while the links will be aligned on the right side of the screen.  */
+
+@media screen and (min-width:900px){
+header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.nav_links {
+    display: flex;
+    flex-direction:row;
+}
+
+/* 12. The .card class and .pricing class will also change depending on the screen size. The cards initial width will no longer be 450px, but instead will become smaller (275px). The pricing elements will be centered accroding to their size. Because the containers are smaller and the screen is bigger, they should now fall right besides each other. */
+.card {
+flex-basis: 275px;
+}
+
+.pricing{
+    Display:flex;
+    Flex-flow: row wrap;
+    Justify-content: center;
+    }
+
+
+/* 13. This code only targets the first header. Because the header is not inside of the main tag (it is the only header and element not inside of the main tag), we can use the direct child selector to accomplish this. This header is the direct child of the body tag, therefore we use body as the parent selector. Because we are aiming to keep the header at the top of the page visible even while scrolling, we make the position fixed. To have it take up the entiry of the screen (width wise) we make the widht 100%. That way it spans from upper left hand corner, to upper right hand corner.
+However, the first code makes the header fall untop of some of the elements inside of main. To fix this, we add a padding (kind of like adding white space one can't see) to the top of the main tag so that the elements aren't hidden by the header. */
+ body > header {
+   position: fixed;
+   width:100%;
+}
+
+main {
+    padding-top: 90px;
+}
+}
+
+/* 14. The following specifications uses a media query for when the user prefers reduced motion.  The animation to the logo can be removed if prefers-reduced-motion is selected in the accessibility preferences. */
+
+@media (prefers-reduced-motion: reduce) {
+    #logo {
+        animation: none;
+    }
+}
+
+/* 15. and 16. The following specifications use a media query to style how the page will look when it is printed in portrait mode.
+
+This edits the body of the page by changing the font-family to Arial, using Helvetica as a backup font style. It also remoces the imahe background. The backup background color will then appear when it is in print mode. */
+
+@media print {
+    body{
+        font-family: Arial, Helvetica;
+        background-image: none;
+}
+/* 17. The code edits the nav_links to that they fall in a row under the logo and so that there is a gap (some space) between them. */
+.nav_links {
+    display: flex;
+    flex-direction:row;
+    gap: 150px;
+}
+
+/* 18. The following code edit the pricing class so that the elements are aligned at the bottom and so that they remain in a row, right next to each other rather than below each other. */
+.pricing{
+    Display:flex;
+    flex-flow: row;
+    }
+
+
+/* 19. This code gives the card class containers a solid 2px border of the color specified. It also changes the initial size fo the containers to 325px.  */
+.card {
+    border: solid 2px #45ADDD;
+    flex-basis: 325px;
+}
+
+/* 20. The following code hides all of the gallery section. Using the #gallery id only hides the images, therefore I also included the .gallery, so that the Heading can also be hidden. To match the screenshot provided, and move the footer to the second page, I also added a footer selection and added margin to the top, so that it falls unto the second page. */
+#gallery {
+    display: none;
+}
+
+.gallery{
+    display:none;
+}
+
+footer{
+    margin-top: 50px;
+}
+
+/* 21. Lastly this last code targets the second element under each unorganized list tag inside of the card class. The ::after adds the styling at the end of this element. In this case, we have added the content: 👍 to it.  */
+.card ul li:nth-child(2)::after {
+    content: "👍";
+}
+}
